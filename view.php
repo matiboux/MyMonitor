@@ -29,32 +29,6 @@ include 'db_connect.php';
 <?php $id = $_GET['id']; ?>
 <?php
 
-try
-
-{
-
-    // On se connecte à MySQL
-
-$bdd = new PDO('mysql:host='.$bdd_host.';dbname='.$bdd_db.';charset=utf8', $bdd_user, $bdd_password);
-
-}
-
-catch(Exception $e)
-
-{
-
-    // En cas d'erreur, on affiche un message et on arrête tout
-
-        die('Erreur : '.$e->getMessage());
-
-}
-
-
-// Si tout va bien, on peut continuer
-
-
-// On récupère tout le contenu de la table jeux_video
-
 $reponse = $bdd->prepare('SELECT * FROM `servers` WHERE `id`= ?');
 $reponse->execute(array($id));
 

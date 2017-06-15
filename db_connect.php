@@ -1,8 +1,13 @@
 <?php
+include 'config.php';
+try
+{
 
- $bdd_host     = "localhost"; // localhost normally works, if localhost doesn't exist contact your web host
- $bdd_db       = ""; // Database name
- $bdd_user     = ""; // Username
- $bdd_password = ""; // Password
-
+$bdd = new PDO('mysql:host=localhost;dbname='.$nomdb.'', $user, $pass);
+}
+catch (Exception $e)
+{
+// En cas d'erreur, on affiche un message et on arrête tout
+die('Erreur : ' . $e->getMessage());
+}
 ?>

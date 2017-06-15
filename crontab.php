@@ -2,19 +2,6 @@
 include 'db_connect.php';
  ?>
 <?php
-try
-{
-$bdd = new PDO('mysql:host='.$bdd_host.';dbname='.$bdd_db.';charset=utf8', $bdd_user, $bdd_password);
-}
-catch(Exception $e)
-{
-
-    // En cas d'erreur, on affiche un message et on arrête tout
-
-        die('Erreur : '.$e->getMessage());
-  }
-
-// On récupère tout le contenu de la table jeux_video
 $reponse = $bdd->prepare('SELECT * FROM `servers`');
 $reponse->execute(array($user));
 while ($donnees = $reponse->fetch())
@@ -26,77 +13,31 @@ while ($donnees = $reponse->fetch())
 <?php
 $ip = $donnees['IP'];
 $port = $donnees['port'];
-if (!$socket = @fsockopen($ip, $port, $errno, $errstr, 30))
+$status = @fsockopen($ip, $port, $errno, $errstr, 30); // true si up, false si down.
 
-{
- echo '';
+  if (!$status) {
+    $sql = 'UPDATE servers SET mail_send = ? WHERE IP = ?';
+    $req = $bdd->prepare($sql);
+    $req->execute(array(true, $donnees['IP']));
+    echo '<span class="label label-danger">Hors ligne</span>'; fclose($socket);
 
+    if(!$donnees['mail_send']){
+      include 'includes/mailoff.php';
+    }
+  }
+  else
+  {
+    $sql = 'UPDATE servers SET mail_send = ? WHERE IP = ?';
+    $req = $bdd->prepare($sql);
+    $req->execute(array(false, $donnees['IP']));
+    echo '<span class="label label-success">En ligne</span>'; fclose($socket);
 
-$destinataire = $donnees['user'];
-// Pour les champs $expediteur / $copie / $destinataire, séparer par une virgule s'il y a plusieurs adresses
-$expediteur = $donnees['user']
-$objet = 'MyMonitor - Serveur Offline'; // Objet du message
-$headers  = 'MIME-Version: 1.0' . "\n"; // Version MIME
-$headers .= 'Reply-To: '.$expediteur."\n"; // Mail de reponse
-$headers .= 'From: "MyMonitor"<'.$expediteur.'>'."\n"; // Expediteur
-$headers .= 'Delivered-to: '.$destinataire."\n"; // Destinataire
-$headers .= 'Cc: '.$copie."\n"; // Copie Cc
-$headers .= 'Bcc: '.$copie_cachee."\n\n"; // Copie cachée Bcc
-$message = 'Bonjour,
-
-Votre serveur '.$ip.' ne semble plus joignable.
-Merci de regarder au plus vite.
-MyMonitor';
-if (mail($destinataire, $objet, $message, $headers)) // Envoi du message
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-{
-    echo '';
-}
-else // Non envoyé
-{
-    echo "";
-}
-
+    if($donnees['mail_send']){
+      include 'includes/mailon.php';
+    };
+  }
 
 }
-else
-{ echo '<span class="label label-success">En ligne</span>'; fclose($socket);
-}
-?>
-
-
-
-
-
-
-<?php
-
-}
-
 
 $reponse->closeCursor(); // Termine le traitement de la requête
 

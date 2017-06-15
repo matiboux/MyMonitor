@@ -11,7 +11,6 @@ if (!isset($_SESSION['login'])) {
   <head>
 
 <link rel="icon" type="image/png" href="favicon.png" />
-    <meta charset="UTF-8">
     <title>MyMonitor</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     <!-- Bootstrap 3.3.4 -->
@@ -70,7 +69,8 @@ if (!isset($_SESSION['login'])) {
                     <img src="https://lh3.googleusercontent.com/-vI0a4fkM_Ak/AAAAAAAAAAI/AAAAAAAAAAA/7yZgNUb5dGM/photo.jpg" class="img-circle" alt="User Image" />
                     <p>
                       <?php echo htmlentities(trim($_SESSION['login'])); ?>
-
+											<br />
+											<a href="profil.php" style="color:white;">Mon profil</a>
                     </p>
                   </li>
                   <!-- Menu Body -->

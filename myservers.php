@@ -28,33 +28,6 @@ include 'db_connect.php';
 <div class="row">
 <?php $user = $_SESSION['login']; ?>
 <?php
-
-try
-
-{
-
-    // On se connecte à MySQL
-
-$bdd = new PDO('mysql:host='.$bdd_host.';dbname='.$bdd_db.';charset=utf8', $bdd_user, $bdd_password);
-
-}
-
-catch(Exception $e)
-
-{
-
-    // En cas d'erreur, on affiche un message et on arrête tout
-
-        die('Erreur : '.$e->getMessage());
-
-}
-
-
-// Si tout va bien, on peut continuer
-
-
-// On récupère tout le contenu de la table jeux_video
-
 $reponse = $bdd->prepare('SELECT * FROM `servers` WHERE `user`= ?');
 $reponse->execute(array($user));
 if (isset($_GET["del"])) {
@@ -105,7 +78,7 @@ if (!$socket = @fsockopen($ip, $port, $errno, $errstr, 30))
   <div class="box-body">
 
 
- '.$donnees['IP'].'
+'.$donnees['IP'].' ('.$port.')
 
 <br />
 
@@ -120,7 +93,7 @@ else
   </div>
   <div class="box-body">
 
-'.$donnees['IP'].'
+'.$donnees['IP'].' ('.$port.')
 
 <br/>
 Ping : <span class="label label-success">Ok</span>'; fclose($socket);

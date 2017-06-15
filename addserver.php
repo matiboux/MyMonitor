@@ -32,80 +32,38 @@ $user = $_SESSION['login'];
 <font color="red">Attention : les champs ne doivent pas rester vides !</font>
 
 
+<?php
 
 
+  if (!empty($_POST['nom']) && !empty($_POST['description']) && !empty($_POST['IP']) && !empty($_POST['port'])){
+      $sql = 'SELECT * FROM admin WHERE mail= ?' ;
+      $req = $bdd->prepare($sql);
+      $req->execute(array($_SESSION['login']));
+      while($row = $req->fetch()) {
+      $apikey65 = $row['apikey'];
+      $tel65 = $row['phone'];
+      }
+    $tab = array(
+            "nom" => $_POST['nom'],
+            "description" => $_POST['description'],
+            "user" => $_SESSION['login'],
+            "ip" => $_POST['IP'],
+            "port" => $_POST['port'],
+            "mail_send" => "0",
+            "apikey" => $apikey65,
+            "phone" => $tel65
+          );
+    $sql = 'INSERT INTO servers (nom,IP,description,user,port,mail_send,apikey,phone) VALUES (:nom, :ip, :description, :user, :port, :mail_send, :apikey, :phone)' ;
+    $req = $bdd->prepare($sql);
+    $result = $req->execute($tab);
+    echo '<div class="callout callout-success">
+  <h4>F&eacute;licitations !</h4>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-	<?php
-    // on teste si le visiteur a soumis le formulaire
-    if (isset($_POST['Soumettre']) && $_POST['Soumettre'] == 'Soumettre') {
-    	// on teste l'existence de nos variables. On teste également si elles ne sont pas vides
-    	if ((isset($_POST['nom']) && !empty($_POST['description'])) && (isset($_POST['IP']) && !empty($_POST['description']))) {
-    	// on teste les deux mots de passe
-    	if ($_POST['IP'] != $_POST['IP']) {
-    		$erreur = 'ERROR 2.';
-    	}
-    	else {
-    		$base = mysql_connect ($bdd_host, $bdd_user, $bdd_password);
-    		mysql_select_db ($bdd_db, $base);
-
-    		// on recherche si ce login est déjà utilisé par un autre membre
-    		$sql = 'SELECT count(*) FROM servers WHERE nom="'.mysql_escape_string($_POST['IP']).'"';
-    		$req = mysql_query($sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error());
-    		$data = mysql_fetch_array($req);
-
-    		if ($data[0] == 0) {
-    		$sql = 'INSERT INTO servers VALUES("", "'.mysql_escape_string($_POST['nom']).'", "'.mysql_escape_string($_POST['IP']).'", "'.mysql_escape_string($_POST['description']).'", "'.mysql_escape_string($user).'", "'.mysql_escape_string($_POST['port']).'")';
-    		mysql_query($sql) or die('Erreur SQL !'.$sql.'<br />'.mysql_error());
-    		echo '<META http-equiv="refresh" content="0; URL=myservers.php">';
-    		exit();
-    		}
-    		else {
-    		$erreur = 'ERROR 3';
-    		}
-    	}
-    	}
-    	else {
-    	$erreur = 'ERROR 4';
-    	}
-    }
+  <p>Le serveur vient d\' etre ajout&eacute; !</p>
+</div>';
+  }
 
     ?>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -137,11 +95,6 @@ $user = $_SESSION['login'];
 <font color "red"> * = Obligatoire</font>
           </div>
         </form>
-
-
-
-
-
 
 
                 </div><!-- /.box-body -->

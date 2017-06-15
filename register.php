@@ -10,17 +10,30 @@ include 'db_connect.php';
     		$erreur = 'Les 2 mots de passe sont différents.';
     	}
     	else {
-            $base = mysql_connect ($bdd_host, $bdd_user, $bdd_password);
-            mysql_select_db ($bdd_db, $base);
+
+				$sql = 'SELECT COUNT(*) FROM admin WHERE mail = ?';
+				$req = $bdd->prepare($sql);
+				$req->execute(array($mail));
+				while($row = $req->fetchColumn()){
+				$nb = $row;
+				}
+
 
     		// on recherche si ce login est déjà utilisé par un autre membre
-    		$sql = 'SELECT count(*) FROM admin WHERE mail="'.mysql_escape_string($_POST['mail']).'"';
-    		$req = mysql_query($sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error());
-    		$data = mysql_fetch_array($req);
 
-    		if ($data[0] == 0) {
-    		$sql = 'INSERT INTO admin VALUES("", "'.mysql_escape_string($_POST['nom']).'", "'.mysql_escape_string($_POST['prenom']).'", "'.mysql_escape_string($_POST['mail']).'", "'.mysql_escape_string($_POST['login']).'", "'.mysql_escape_string(md5($_POST['pass_md5'])).'")';
-    		mysql_query($sql) or die('Erreur SQL !'.$sql.'<br />'.mysql_error());
+    		if ($nb == 0) {
+				$tab = array(
+					            "nom" => $_POST['nom'],
+					            "prenom" => $_POST['prenom'],
+					            "mail" => $_POST['mail'],
+					            "login" => $_POST['login'],
+											"pass_md5" => (password_hash($_POST['pass_md5'], PASSWORD_DEFAULT)),
+											"apikey" => 'null',
+											"phone" => 'null'
+					);
+				$sql = 'INSERT INTO admin (nom,prenom,mail,login,pass_md5,apikey,phone) VALUES (:nom, :prenom, :mail, :login, :pass_md5, :apikey, :phone)';
+				$req = $bdd->prepare($sql);
+				$result = $req->execute($tab);
 
     		session_start();
     		$_SESSION['login'] = $_POST['login'];
