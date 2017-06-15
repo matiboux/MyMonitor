@@ -31,6 +31,7 @@ include 'db_connect.php';
       <div class="login-box-body">
         <p class="login-box-msg">Connectez-vous ! </p>
 
+
         <?php
         // on teste si le visiteur a soumis le formulaire de connexion
         if (isset($_POST['connexion']) && $_POST['connexion'] == 'Connexion') {
