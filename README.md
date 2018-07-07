@@ -1,7 +1,7 @@
 # MyMonitor
 
 **MyMonitor** is an *open source PHP service* for monitoring the status of external services or websites for you.  
-MyMonitor includes a panel to view the current status of tracked services, and can send you notifications when a service goes down.
+MyMonitor includes a panel to manage and view tracked services and their current status. Turn on or off notifications for when a service goes down.
 
 ---
 
@@ -22,5 +22,5 @@ Copyright (C) 2015-2018 Hexicans & Matiboux ([*plus d'infos plus bas*](#team))
 
 ## Team
 
-**Creator & Developer**: [Hexicans](https://github.com/hexicans)
+**Creator & Developer**: [Hexicans](https://github.com/hexicans)  
 **Developer**: [Matiboux](https://github.com/matiboux)
