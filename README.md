@@ -22,5 +22,5 @@ Copyright (C) 2015-2018 Hexicans & Matiboux ([*plus d'infos plus bas*](#team))
 
 ## Team
 
-**Creator & Developer**: [Hexicans](https://github.com/hexicans)  
-**Developer**: [Matiboux](https://github.com/matiboux)
+**Creator & Developer**: [Hexicans](https://github.com/hexicans) (Axel Hauguel)  
+**Developer**: [Matiboux](https://github.com/matiboux) (Mathieu Guérin)
