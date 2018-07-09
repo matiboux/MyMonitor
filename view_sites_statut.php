@@ -1,6 +1,21 @@
 <?php
 include 'header.php';
 include 'db_connect.php';
+if ($_GET['tokengenerated'] == 'true'){
+  $token = random(24);
+  $sql = 'UPDATE admin SET token_site = ? WHERE id = ?';    
+  $req = $bdd->prepare($sql);
+  $req->execute(array(random(24),$_SESSION['login']));
+  echo '<META http-equiv="refresh" content="0; URL=view_sites_statut.php">';
+  
+}
+  $sql = 'SELECT token_site FROM admin WHERE id= ?' ;
+  $req = $bdd->prepare($sql);
+  $req->execute(array($_SESSION['login']));
+  while($row = $req->fetch()) {
+
+    $token = $row['token_site'];
+  }      
 
 ?>
 
@@ -10,10 +25,15 @@ include 'db_connect.php';
   <section class="content-header">
     <h1>
       Dashboard
-      <small>Version 2.0</small>
+      <small>Version 2.0 </small>
+ 
+   
     </h1>
     <ol class="breadcrumb">
-      <li><a href="#"><i class="fa fa-dashboard"></i> Accueil</a></li>
+      <li>      <a href="view_sites_statut.php?tokengenerated=true"><button type="button" class="btn btn-info">Générer mon token publique</button></a>
+      <a href="view_site_public.php&token=<?php echo $token; ?>"><button type="button" class="btn btn-success"><span class="glyphicon glyphicon-send" aria-hidden="true"></span>  Page publique</button></a>
+
+</li>
 
     </ol>
   </section>

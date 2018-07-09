@@ -18,7 +18,7 @@ include 'db_connect.php';
   </section>
 
   <!-- Main content -->
- <div class="container">
+ <div class="container-fluid">
 
 <?php include 'http://mymonitor.hexicans.eu/labs/maj/2.1.php'; ?>
 
