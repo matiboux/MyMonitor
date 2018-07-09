@@ -3,7 +3,7 @@ include 'config.php';
 try
 {
 
-$bdd = new PDO('mysql:host=localhost;dbname='.$nomdb.'', $user, $pass);
+$bdd = new PDO('mysql:host=plesk1.dyjix.eu;dbname='.$nomdb.'', $user, $pass);
 }
 catch (Exception $e)
 {

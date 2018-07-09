@@ -66,7 +66,7 @@ while ($donnees = $reponse->fetch())
 <?php
 $ip = $donnees['IP'];
 $port = $donnees['port'];
-if (!$socket = @fsockopen($ip, $port, $errno, $errstr, 30))
+if ($donnees['mail_send'] == '1')
 
 {
  echo '
@@ -86,7 +86,8 @@ if (!$socket = @fsockopen($ip, $port, $errno, $errstr, 30))
 Ping : <span class="label label-danger">Failed</span>';
 }
 else
-{ echo '
+{
+   echo '
 <div class="box box-solid box-success">
   <div class="box-header">
     <h3 class="box-title"> '.$donnees['nom'].'</h3>
@@ -96,7 +97,7 @@ else
 '.$donnees['IP'].' ('.$port.')
 
 <br/>
-Ping : <span class="label label-success">Ok</span>'; fclose($socket);
+Ping : <span class="label label-success">Ok</span>'; 
 }
 
 
