@@ -137,7 +137,11 @@ if (!isset($_SESSION['login'])) {
                 <i class="glyphicon glyphicon-share-alt"></i> <span>Ajouter un serveur</span>
               </a>
             </li>
-
+            <li>
+              <a href="view_sites_statut.php">
+                <i class="glyphicon glyphicon-share-alt"></i> <span>Voir le statut des sites</span>
+              </a>
+            </li>
 
 
 
