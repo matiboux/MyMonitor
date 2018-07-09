@@ -19,6 +19,7 @@ include 'db_connect.php';
 
   <!-- Main content -->
  <div class="container">
+ 
 
 <?php include 'http://mymonitor.hexicans.eu/labs/maj/2.1.php'; ?>
 
@@ -43,39 +44,14 @@ while ($donnees = $reponse->fetch())
 ?>
                     <tr>
                       <td style="width:20%;"><?php echo $donnees['nom']; ?></td>
-                      <td  style="width:50%;">
+                      <td  style="width:30%;">
 <?php
 $ip = $donnees['IP'];
 $port = $donnees['port'];
-if (!$socket = @fsockopen($ip, $port, $errno, $errstr, 30))
+if ($donnees['mail_send'] == '1')
 
 {
  echo '<span class="label label-danger">Hors ligne</span>';
-
-
-$destinataire = $donnees['user'];
-// Pour les champs $expediteur / $copie / $destinataire, séparer par une virgule s'il y a plusieurs adresses
-$expediteur = $donnees['user'];
-$objet = 'MyMonitor - Serveur Offline'; // Objet du message
-$headers  = 'MIME-Version: 1.0' . "\n"; // Version MIME
-$headers .= 'Reply-To: '.$expediteur."\n"; // Mail de reponse
-$headers .= 'From: "MyMonitor"<'.$expediteur.'>'."\n"; // Expediteur
-$headers .= 'Delivered-to: '.$destinataire."\n"; // Destinataire
-$headers .= 'Cc: '.$copie."\n"; // Copie Cc
-$headers .= 'Bcc: '.$copie_cachee."\n\n"; // Copie cachée Bcc
-$message = 'Bonjour,
-
-Votre serveur '.$ip.' ne semble plus joignable.
-Merci de regarder au plus vite.
-MyMonitor';
-if (mail($destinataire, $objet, $message, $headers)) // Envoi du message
-{
-    echo '';
-}
-else // Non envoyé
-{
-    echo "";
-}
 
 
 }
@@ -89,7 +65,7 @@ else
 
 
  </td>
-                      <td  style="width:50%;"><?php echo $donnees['description']; ?> </td>
+                      <td  style="width:30%;"><?php echo $donnees['description']; ?> </td>
                       <td><a href="view.php?id=<?php echo $donnees['id']; ?>">Détails</a> </td>
 </tr>
 <?php
@@ -104,6 +80,7 @@ $reponse->closeCursor(); // Termine le traitement de la requête
 
 
                   </table>
+                
                 </div><!-- /.box-body -->
               </div><!-- /.box -->
             </div>
