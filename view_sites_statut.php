@@ -46,9 +46,9 @@ while ($donnees = $reponse->fetch())
                     <tr>
                       <td style="width:20%;"><?php if ($donnees['code_http'] == '200') 
                       { 
-                        echo '<i class="status status-success"></i>'; 
+                        echo '<img src="images/round-success.jpg" height="40%"></img>'; 
                         } else{ 
-                          echo '<span class="label label-danger">•</span>';
+                          echo '<img src="images/round-error.jpg" height="40%"></img>';
                         } 
                           ?>
                           </td>
