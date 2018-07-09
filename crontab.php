@@ -83,7 +83,7 @@ $status = @fsockopen($ip, $port, $errno, $errstr, 30); // true si up, false si d
       include 'includes/mailon.php';
     };
     $result = ping($donnees['IP']);
-    echo " - " . $result . " ms";
+    echo " - " . $result . " ms <br />";
     $sql3 = 'UPDATE servers SET reponse_time = ? WHERE IP = ?';    
     $req3 = $bdd->prepare($sql3);
     $req3->execute(array($result,$donnees['IP']));
