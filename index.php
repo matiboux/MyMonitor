@@ -18,7 +18,7 @@ include 'db_connect.php';
   </section>
 
   <!-- Main content -->
- <div class="container">
+ <div class="container-fluid">
  
 
 <?php include 'http://mymonitor.hexicans.eu/labs/maj/2.1.php'; ?>
@@ -65,7 +65,7 @@ else
 
 
  </td>
-                      <td  style="width:30%;"><?php echo $donnees['description']; ?> </td>
+                      <td  style="width:40%;"><?php echo $donnees['description']; ?> </td>
                       <td><a href="view.php?id=<?php echo $donnees['id']; ?>">Détails</a> </td>
 </tr>
 <?php
