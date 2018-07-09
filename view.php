@@ -46,7 +46,8 @@ while ($donnees = $reponse->fetch())
 
 if ($donnees['user'] != $_SESSION['login']){
 
-echo '<META http-equiv="refresh" content="0; URL=index.php">';
+header('Location: index.php');
+
 
 }
 else {
