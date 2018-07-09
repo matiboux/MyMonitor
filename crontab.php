@@ -1,54 +1,7 @@
 <?php
 include 'db_connect.php';
-/* function Ping($host, $timeout = 10)
-{
-    $output = array();
-    $com = 'ping -n -w ' . $timeout . ' -c 1 ' . escapeshellarg($host);
-    
-    $exitcode = 0;
-    exec($com, $output, $exitcode);
-    
-    if ($exitcode == 0 || $exitcode == 1)
-    { 
-        foreach($output as $cline)
-        {
-            if (strpos($cline, ' bytes from ') !== FALSE)
-            {
-                $out = (int)ceil(floatval(substr($cline, strpos($cline, 'time=') + 5)));
-                return $out;
-            }
-        }
-    }
-    
-    return FALSE;
-}   */
+require ('includes/functions.inc.php');
 
-function icmp_checksum($data) {
-  if (strlen($data) % 2) {
-    $data .= "\x00";
-  }
-  $bit = unpack('n*', $data);
-  $sum = array_sum($bit);
-  while  ($sum  >> 16) {
-    $sum = ($sum >> 16) + ($sum & 0xffff);
-  }
-  return pack('n*', ~$sum);
-}
-
-function ping($host) {
-  $tmp = "\x08\x00\x00\x00\x00\x00\x00\x00PingTest";
-  $checksum = icmp_checksum($tmp);
-  $package = "\x08\x00".$checksum."\x00\x00\x00\x00PingTest";
-  $socket = socket_create(AF_INET, SOCK_RAW, 1);
-  socket_connect($socket, $host, null);
-  $timer = microtime(1);
-  socket_send($socket, $package, strlen($package), 0);
-  if (socket_read($socket, 255)) {
-    return round((microtime(1) - $timer) * 1000, 2);
-  }
-}
- ?>
-<?php
 $reponse = $bdd->prepare('SELECT * FROM `servers`');
 $reponse->execute(array($user));
 while ($donnees = $reponse->fetch())
@@ -92,7 +45,41 @@ $status = @fsockopen($ip, $port, $errno, $errstr, 30); // true si up, false si d
 
 }
 
+
+$sql = 'SELECT * FROM sites' ;
+$req = $bdd->prepare($sql);
+$req->execute();
+while($row = $req->fetch()) {
+
+  $codehttp = testsite($row['site']);
+echo $codehttp . "<br />";
+//echo $row['id'] . "<br />";
+  if ($codehttp == '200'){
+
+    $sql2 = 'UPDATE sites SET code_http = ? WHERE id = ?';    
+    $req2 = $bdd->prepare($sql2);
+    $req2->execute(array($codehttp,$row['id']));
+  
+
+
+  }else{
+    $sql2 = 'UPDATE sites SET code_http = ? WHERE id = ?';    
+    $req2 = $bdd->prepare($sql2);
+    $req2->execute(array($codehttp,$row['id']));
+
+  }
+
+
+
+
+}    
+
+
+
+
 $reponse->closeCursor(); // Termine le traitement de la requête
+
+
 
 
 ?>
