@@ -59,7 +59,7 @@ echo '<div class="callout callout-success">
  ?>
 <?php $user = $_SESSION['login']; ?>
 <?php
-            $reponse = $bdd->prepare('SELECT * FROM `admin` WHERE `mail`= ?');
+            $reponse = $bdd->prepare('SELECT * FROM `admin` WHERE `id`= ?');
             $reponse->execute(array($user));
             while ($donnees = $reponse->fetch())
             {
