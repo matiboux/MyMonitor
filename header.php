@@ -139,7 +139,7 @@ if (!isset($_SESSION['login'])) {
             </li>
             <li>
               <a href="view_sites_statut.php">
-                <i class="glyphicon glyphicon-share-alt"></i> <span>Voir le statut des sites</span>
+                <i class="glyphicon glyphicon-comment"></i> <span>Voir le statut des sites</span>
               </a>
             </li>
 
