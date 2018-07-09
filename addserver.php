@@ -36,7 +36,7 @@ $user = $_SESSION['login'];
 
 
   if (!empty($_POST['nom']) && !empty($_POST['description']) && !empty($_POST['IP']) && !empty($_POST['port'])){
-      $sql = 'SELECT * FROM admin WHERE mail= ?' ;
+      $sql = 'SELECT * FROM admin WHERE id= ?' ;
       $req = $bdd->prepare($sql);
       $req->execute(array($_SESSION['login']));
       while($row = $req->fetch()) {
@@ -51,9 +51,10 @@ $user = $_SESSION['login'];
             "port" => $_POST['port'],
             "mail_send" => "0",
             "apikey" => $apikey65,
-            "phone" => $tel65
+            "phone" => $tel65,
+            "reponse_time" => '2'
           );
-    $sql = 'INSERT INTO servers (nom,IP,description,user,port,mail_send,apikey,phone) VALUES (:nom, :ip, :description, :user, :port, :mail_send, :apikey, :phone)' ;
+    $sql = 'INSERT INTO servers (nom,IP,description,user,port,mail_send,apikey,phone,reponse_time) VALUES (:nom, :ip, :description, :user, :port, :mail_send, :apikey, :phone,:reponse_time)' ;
     $req = $bdd->prepare($sql);
     $result = $req->execute($tab);
     echo '<div class="callout callout-success">

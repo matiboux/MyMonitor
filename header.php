@@ -146,3 +146,29 @@ if (!isset($_SESSION['login'])) {
 
 
       </aside>
+<?php
+function icmp_checksum($data) {
+  if (strlen($data) % 2) {
+    $data .= "\x00";
+  }
+  $bit = unpack('n*', $data);
+  $sum = array_sum($bit);
+  while  ($sum  >> 16) {
+    $sum = ($sum >> 16) + ($sum & 0xffff);
+  }
+  return pack('n*', ~$sum);
+}
+
+function ping($host) {
+  $tmp = "\x08\x00\x00\x00\x00\x00\x00\x00PingTest";
+  $checksum = icmp_checksum($tmp);
+  $package = "\x08\x00".$checksum."\x00\x00\x00\x00PingTest";
+  $socket = socket_create(AF_INET, SOCK_RAW, 1);
+  socket_connect($socket, $host, null);
+  $timer = microtime(1);
+  socket_send($socket, $package, strlen($package), 0);
+  if (socket_read($socket, 255)) {
+    return round((microtime(1) - $timer) * 1000, 2);
+  }
+}
+?>

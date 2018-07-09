@@ -97,7 +97,12 @@ else
 '.$donnees['IP'].' ('.$port.')
 
 <br/>
-Ping : <span class="label label-success">Ok</span>'; 
+Ping : <span class="label label-success">Ok</span>
+<br />
+Temps de réponse : <font size="4px"><span class="label label-info"><font size="3px">'.$donnees['reponse_time'].' ms</font></span></font>
+
+'; 
+
 }
 
 
