@@ -65,7 +65,7 @@ echo '<div class="callout callout-success">
                     <!-- text input -->
                     <div class="form-group">
                       <label>Site*</label>
-                      <input maxlength="50" class="form-control" name="site" placeholder="" type="text">
+                      <input maxlength="200" class="form-control" name="site" placeholder="" type="text">
                     </div>
                     <!-- textarea -->
 

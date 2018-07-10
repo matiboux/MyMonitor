@@ -84,7 +84,7 @@ while($row = $req->fetch()) {
 ?>
 
     
-    <div class="group-items "><li class="list-group-item sub-component"><a href="<?php echo $row['site']; ?>" target="_blank" class="links"><?php echo $row['site']; ?></a> <i data-toggle="tooltip" data-title="Site <?php echo $row['site']; ?>" data-container="body" class="ion ion-ios-help-outline help-icon" data-original-title="" title=""></i> <div class="pull-right"><small data-toggle="tooltip" title="" class="text-component-1 greens" data-original-title=""><?php if($row['code_http'] == '200'){ echo "Operationnel"; } else { echo "Indisponible : Erreur " . $row['code_http']; } ?></small></div></li>
+    <div class="group-items "><li class="list-group-item sub-component"><a href="<?php echo $row['site']; ?>" target="_blank" class="links"><?php echo $row['site']; ?></a> <i data-toggle="tooltip" data-title="Site <?php echo $row['site']; ?>" data-container="body" class="ion ion-ios-help-outline help-icon" data-original-title="" title=""></i> <div class="pull-right"><small data-toggle="tooltip" title="" class="text-component-1 greens" data-original-title=""><?php if($row['code_http'] == '200'){ echo '<img src="../images/round-success.jpg" height="11px"> Operationnel'; } else { echo '<img src="../images/round-error.jpg" height="11px"> Indisponible : Erreur ' . $row['code_http']; } ?></small></div></li>
 
 
 <?php } ?>

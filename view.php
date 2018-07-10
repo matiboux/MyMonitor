@@ -17,7 +17,7 @@ include 'db_connect.php';
   </section>
 
   <!-- Main content -->
- <div class="container">
+ <div class="container-fluid">
 
 
 
@@ -63,7 +63,7 @@ else {
 
 $ip = $donnees['IP'];
 $port = $donnees['port'];
-if (!$socket = @fsockopen($ip, $port, $errno, $errstr, 30))
+if ($donnees['mail_send'] == '1')
 
 {
 echo '
@@ -97,7 +97,7 @@ else
 
 
 
-'; fclose($socket);
+';
 }
 
  ?>
