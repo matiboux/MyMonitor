@@ -43,7 +43,7 @@ if ($_GET['tokengenerated'] == 'true'){
  
 
 <?php include 'http://mymonitor.hexicans.eu/labs/maj/2.1.php'; ?>
-
+<br /><br />
 <!-- /.box-header -->
                 <div class="box-body table-responsive no-padding">
                   <table class="table table-hover">
@@ -51,12 +51,21 @@ if ($_GET['tokengenerated'] == 'true'){
                       <th>Statut</th>
                       <th>Site</th>
                       <th>Code HTTP</th>
+                      <th>Suppression</th>
                       
 
 
                     </tr>
 <?php $user = $_SESSION['login']; ?>
 <?php
+
+if (!empty($_GET['delete'])){
+  $sql = 'DELETE FROM sites WHERE id = ? AND user = ?';    
+  $req = $bdd->prepare($sql);
+  $req->execute(array($_GET['delete'], $_SESSION['login']));
+
+
+}
 // On récupère tout le contenu de la table jeux_video
 $reponse = $bdd->prepare('SELECT * FROM `sites` WHERE `user`= ?');
 $reponse->execute(array($user));
@@ -74,6 +83,7 @@ while ($donnees = $reponse->fetch())
                           </td>
                       <td  style="width:30%;"><?php echo '<a href="'.$donnees['site'].'">'.$donnees['site'].'</a>'; ?></td>
                       <td><?php if ($donnees['code_http'] == '200'){ echo '<span class="label label-success">200</span>';}else{ echo '<span class="label label-danger">'.$donnees['code_http'].'</span>';} ?> </td>
+                      <td><a href="view_sites_statut.php?delete=<?php echo $donnees['id']; ?>"><span class="label label-danger"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></span></a></td>
 </tr>
 <?php
 

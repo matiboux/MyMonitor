@@ -143,6 +143,11 @@ require('includes/functions.inc.php');
                 <i class="glyphicon glyphicon-comment"></i> <span>Voir le statut des sites</span>
               </a>
             </li>
+            <li>
+              <a href="add_site.php">
+                <i class="glyphicon glyphicon-share-alt"></i> <span>Ajouter un site</span>
+              </a>
+            </li>
 
 
 
