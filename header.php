@@ -153,6 +153,16 @@ require('includes/functions.inc.php');
                 <i class="glyphicon glyphicon-plus"></i> <span>Ajouter une catégorie</span>
               </a>
             </li>
+            <li>
+              <a href="view_incident.php">
+                <i class="glyphicon glyphicon-th"></i> <span>Voir les incidents</span>
+              </a>
+            </li>
+            <li>
+              <a href="add_incident.php">
+                <i class="glyphicon glyphicon-plus"></i> <span>Ajouter un incident</span>
+              </a>
+            </li>
 
 
       </aside>

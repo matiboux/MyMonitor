@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost
--- Généré le :  mar. 10 juil. 2018 à 22:30
+-- Généré le :  mer. 11 juil. 2018 à 00:12
 -- Version du serveur :  10.0.32-MariaDB-0+deb8u1
 -- Version de PHP :  5.6.36
 
@@ -40,13 +40,6 @@ CREATE TABLE `admin` (
   `token_site` varchar(24) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Déchargement des données de la table `admin`
---
-
-INSERT INTO `admin` (`id`, `nom`, `prenom`, `mail`, `login`, `pass_md5`, `apikey`, `phone`, `token_site`) VALUES
-(1, 'HAUGUEL', 'Axel', 'axel@dyjix.eu', 'Dyjix', '$2y$10$F5e3dfN97h3PdbbbihOqneFYrcnZaWgs3lMxlPwDm3ZJ8LLLNPbNS', 'null', 0, '25k2g8r3yiq7t3h33ies6ve2');
-
 -- --------------------------------------------------------
 
 --
@@ -60,15 +53,20 @@ CREATE TABLE `category` (
   `type` text
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+-- --------------------------------------------------------
+
 --
--- Déchargement des données de la table `category`
+-- Structure de la table `incident`
 --
 
-INSERT INTO `category` (`id`, `id_user`, `name_category`, `type`) VALUES
-(3, 1, 'Personnel', 'site'),
-(4, 1, 'Professionnel', 'site'),
-(6, 1, 'Dyjix', 'server'),
-(7, 1, 'Personnel', 'server');
+CREATE TABLE `incident` (
+  `id` int(11) NOT NULL,
+  `id_user` int(11) DEFAULT NULL,
+  `type` text,
+  `titre` text,
+  `message` text,
+  `statut` text
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -90,15 +88,6 @@ CREATE TABLE `servers` (
   `category` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Déchargement des données de la table `servers`
---
-
-INSERT INTO `servers` (`id`, `nom`, `IP`, `description`, `user`, `port`, `mail_send`, `apikey`, `phone`, `reponse_time`, `category`) VALUES
-(5, 'Dyjix site', 'dyjix.eu', 'Site de Dyjix', '1', 443, 0, 'null', 0, 0, 6),
-(6, 'Teamspeak', 'ts3.dyjix.eu', 'TS Dyjix', '1', 9987, 1, 'null', 0, 2, 7),
-(7, 'Oreox SSH', 'oreox.fr', 'SSH Oreox', '1', 22, 0, 'null', 0, 0, 6);
-
 -- --------------------------------------------------------
 
 --
@@ -115,22 +104,6 @@ CREATE TABLE `sites` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Déchargement des données de la table `sites`
---
-
-INSERT INTO `sites` (`id`, `user`, `site`, `mail_send`, `code_http`, `category`) VALUES
-(2, '1\r\n', 'axel-hauguel.fr', 0, 200, 3),
-(3, '1', 'https://oreox.fr', 0, 200, 3),
-(4, '1', 'https://dyjix.eu', 0, 200, 4),
-(10, '1', 'http://git.dyjix.eu', 0, 200, 4),
-(11, '1', 'http://cloud.hexicans.eu', 1, 0, 3),
-(12, '1', 'http://hexicans.eu', 0, 200, 3),
-(13, '1', 'https://plesk1.dyjix.eu:8443/', 0, 200, 4),
-(14, '1', 'https://vps.dyjix.eu/login.php', 0, 200, 4),
-(18, '1', 'http://s.en-prod.org/', 0, 200, 3),
-(19, '1', 'http://twitter.oreox.fr', 0, 200, 3);
-
---
 -- Index pour les tables déchargées
 --
 
@@ -144,6 +117,12 @@ ALTER TABLE `admin`
 -- Index pour la table `category`
 --
 ALTER TABLE `category`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `incident`
+--
+ALTER TABLE `incident`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -175,10 +154,16 @@ ALTER TABLE `category`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
+-- AUTO_INCREMENT pour la table `incident`
+--
+ALTER TABLE `incident`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT pour la table `servers`
 --
 ALTER TABLE `servers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT pour la table `sites`
