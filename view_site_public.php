@@ -74,7 +74,7 @@ if ($nbsiteerror >= 1){
     
 <li class="list-group-item group-name">
     <i class="ion-ios-minus-outline group-toggle"></i> 
-    <strong>Services web DYJIX</strong> 
+    <strong>Services web</strong> 
 <?php
 $sql = 'SELECT * FROM sites WHERE user= ?' ;
 $req = $bdd->prepare($sql);
