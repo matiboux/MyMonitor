@@ -93,7 +93,7 @@ while($row = $req->fetch()) {
 ?>
 
     
-    <div class="group-items "><li class="list-group-item sub-component"><?php echo $row['nom']; ?><i data-toggle="tooltip" data-title="" data-container="body" class="ion ion-ios-help-outline help-icon" data-original-title="" title=""></i> <div class="pull-right"><small data-toggle="tooltip" title="" class="text-component-1 greens" data-original-title=""><?php if($row['mail_send'] == '0'){ echo '<img src="../images/round-success.jpg" height="11px"> Operationnel'; } else { echo '<img src="../images/round-error.jpg" height="11px"> Indisponible : Erreur '; } ?></small></div></li>
+    <div class="group-items "><li class="list-group-item sub-component"><?php echo $row['nom']; ?><i data-toggle="tooltip" data-title="" data-container="body" class="ion ion-ios-help-outline help-icon" data-original-title="" title=""></i> <div class="pull-right"><small data-toggle="tooltip" title="" class="text-component-1 greens" data-original-title=""><?php if($row['mail_send'] == '0'){ echo '<img src="../images/round-success.jpg" height="11px"> Operationnel (' . $row['reponse_time'] . ' ms)'; } else { echo '<img src="../images/round-error.jpg" height="11px"> Indisponible : Erreur '; } ?></small></div></li>
 
 
 <?php } ?>
