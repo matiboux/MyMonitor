@@ -135,17 +135,17 @@ require('includes/functions.inc.php');
             </li>
             <li>
               <a href="addserver.php">
-                <i class="glyphicon glyphicon-share-alt"></i> <span>Ajouter un serveur</span>
+                <i class="glyphicon glyphicon-plus"></i> <span>Ajouter un serveur</span>
               </a>
             </li>
             <li>
               <a href="view_sites_statut.php">
-                <i class="glyphicon glyphicon-comment"></i> <span>Voir le statut des sites</span>
+                <i class="glyphicon glyphicon-search"></i> <span>Voir le statut des sites</span>
               </a>
             </li>
             <li>
               <a href="add_site.php">
-                <i class="glyphicon glyphicon-share-alt"></i> <span>Ajouter un site</span>
+                <i class="glyphicon glyphicon-plus"></i> <span>Ajouter un site</span>
               </a>
             </li>
 

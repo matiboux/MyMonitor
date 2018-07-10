@@ -22,7 +22,16 @@ $status = @fsockopen($ip, $port, $errno, $errstr, 30); // true si up, false si d
     echo '<span class="label label-danger">Hors ligne</span>'; fclose($socket);
 
     if(!$donnees['mail_send']){
-      include 'includes/mailoff.php';
+
+      $sql2 = 'SELECT * FROM admin WHERE id= ?' ;
+      $req2 = $bdd->prepare($sql2);
+      $req2->execute(array($donnees['user']));
+      while($row = $req2->fetch()) {
+
+        include 'includes/mailoff.php';
+      }  
+
+    
     }
   }
   else
@@ -32,8 +41,20 @@ $status = @fsockopen($ip, $port, $errno, $errstr, 30); // true si up, false si d
     $req->execute(array(false, $donnees['IP']));
     echo '<span class="label label-success">En ligne</span>'; fclose($socket);
 
+  
     if($donnees['mail_send']){
-      include 'includes/mailon.php';
+
+      $sql2 = 'SELECT * FROM admin WHERE id= ?' ;
+      $req2 = $bdd->prepare($sql2);
+      $req2->execute(array($donnees['user']));
+      while($row = $req2->fetch()) {
+
+        include 'includes/mailon.php';
+      }  
+
+
+
+    
     };
     $result = ping($donnees['IP']);
     echo " - " . $result . " ms <br />";
@@ -59,14 +80,49 @@ echo $codehttp . "<br />";
     $sql2 = 'UPDATE sites SET code_http = ? WHERE id = ?';    
     $req2 = $bdd->prepare($sql2);
     $req2->execute(array($codehttp,$row['id']));
-  
+
+    if ($row['mail_send'] == true){
+
+      $sql2 = 'SELECT * FROM admin WHERE id= ?' ;
+      $req2 = $bdd->prepare($sql2);
+      $req2->execute(array($row['user']));
+      while($donnees = $req2->fetch()) {
+
+        include 'includes/mailon_site.php';
+      }    
+      $sql2 = 'UPDATE sites SET mail_send = ? WHERE id = ?';    
+      $req2 = $bdd->prepare($sql2);
+      $req2->execute(array(false,$row['id'])); 
+      
+
+    
+
+    }
 
 
   }else{
+    
     $sql2 = 'UPDATE sites SET code_http = ? WHERE id = ?';    
     $req2 = $bdd->prepare($sql2);
     $req2->execute(array($codehttp,$row['id']));
 
+    if ($row['mail_send'] == false){
+
+      $sql2 = 'SELECT * FROM admin WHERE id= ?' ;
+      $req2 = $bdd->prepare($sql2);
+      $req2->execute(array($row['user']));
+      while($donnees = $req2->fetch()) {
+        include 'includes/mailoff_site.php';
+      
+      }  
+      $sql2 = 'UPDATE sites SET mail_send = ? WHERE id = ?';    
+      $req2 = $bdd->prepare($sql2);
+      $req2->execute(array(true,$row['id'])); 
+
+
+     
+
+    }
   }
 
 

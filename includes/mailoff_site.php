@@ -12,8 +12,8 @@ include('config.php');
 $smtp = new SMTP($hote, $mailexp, $motdepassem); // ça marche
 
 // message
-$smtp->smtp_mail($row['mail'], 'MyMonitor - Hors Ligne', 'Bonjour,
-Votre serveur semble etre hors ligne.
+$smtp->smtp_mail($donnees['mail'], 'MyMonitor - Hors Ligne', 'Bonjour,
+Votre site semble etre hors ligne.
 
 MyMonitor');// Envoie du mail
 
@@ -24,7 +24,7 @@ else{// Affichage des erreurs
 echo $smtp->erreur;
 }
 // ce que je viens de dev commence en dessous
-$sms='http://hexicans.eu/api/index.php?tel=0'.$row['phone'].'&key='.$row['apikey'].'&msg='.urlencode('ALERTE MyMonitor - Un de vos serveurs semble etre hors ligne !').'';
+$sms='http://hexicans.eu/api/index.php?tel=0'.$donnees['phone'].'&key='.$donnees['apikey'].'&msg='.urlencode('ALERTE MyMonitor - Un de vos serveurs semble etre hors ligne !').'';
 
 // Cr�ation d'une nouvelle ressource cURL
 $ch = curl_init();

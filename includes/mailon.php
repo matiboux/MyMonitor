@@ -12,7 +12,7 @@ include('config.php');
 $smtp = new SMTP($hote, $mailexp, $motdepassem);
 
 // message
-$smtp->smtp_mail($donnees['user'], 'MyMonitor - En ligne', 'Bonjour,
+$smtp->smtp_mail($row['mail'], 'MyMonitor - En ligne', 'Bonjour,
 Votre serveur semble etre de nouveau en ligne.
 
 MyMonitor');// Envoie du mail
@@ -25,7 +25,7 @@ echo $smtp->erreur;
 }
 
 // ce que je viens de dev commence en dessous
-$sms='http://hexicans.eu/api/index.php?tel=0'.$donnees['phone'].'&key='.$donnees['apikey'].'&msg='.urlencode('ALERTE MyMonitor - Le serveur '.$donnees['IP'].' ('.$donnees['nom'].') est de nouveau en ligne! ').'';
+$sms='http://hexicans.eu/api/index.php?tel=0'.$row['phone'].'&key='.$row['apikey'].'&msg='.urlencode('ALERTE MyMonitor - Un de vos serveurs est de nouveau en ligne! ').'';
 
 // Cr�ation d'une nouvelle ressource cURL
 $ch = curl_init();
