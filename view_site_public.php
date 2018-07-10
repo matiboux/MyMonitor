@@ -73,7 +73,7 @@ if ($nbsiteerror >= 1){
     
 <ul class="list-group components">
     
-<li class="list-group-item group-name">
+<li class="list-group-item group-name active">
     <i class="ion-ios-minus-outline group-toggle"></i> 
     <strong>Services web</strong> 
 <?php
