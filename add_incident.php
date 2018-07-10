@@ -2,7 +2,46 @@
 include 'header.php';
 include 'db_connect.php';
 ?>
+<script type="text/javascript" src="assets/tiny_mce/tiny_mce.js"></script>
+<script type="text/javascript">
+    tinyMCE.init({
+        // General options
+        mode : "textareas",
+        theme : "advanced",
+        plugins : "paste,autolink,lists,pagebreak,style,layer,table,save,advhr,advimage," +
+                    "advlink,emotions,iespell,inlinepopups,insertdatetime,preview,media,searchreplace," +
+                    "print,contextmenu,directionality,fullscreen,noneditable,visualchars,nonbreaking," +
+                    "xhtmlxtras,template,wordcount,advlist,visualblocks",
 
+        // Theme options
+        theme_advanced_buttons1 : "bold,italic,underline,|,justifyleft,justifycenter,justifyright,justifyfull,styleselect,formatselect,fontselect,fontsizeselect",
+        theme_advanced_buttons2 : "cut,copy,paste,|,search,replace,|,bullist,numlist,|,outdent,indent,blockquote,|,undo,redo,|,link,unlink,anchor,|,insertdate,inserttime,preview,|,forecolor,backcolor,hr",
+
+        theme_advanced_toolbar_location : "top",
+        theme_advanced_toolbar_align : "left",
+        theme_advanced_statusbar_location : "bottom",
+        theme_advanced_resizing : false,
+        add_unload_trigger: false,
+
+        theme_advanced_default_font_size : '10pt',
+        theme_advanced_default_font_family : 'Verdana',
+        theme_advanced_fonts : "Andale Mono=andale mono,monospace;Arial=arial,helvetica,sans-serif;Arial Black=arial black,sans-serif;Book Antiqua=book antiqua,palatino,serif;Comic Sans MS=comic sans ms,sans-serif;Courier New=courier new,courier,monospace;Georgia=georgia,palatino,serif;Helvetica=helvetica,arial,sans-serif;Impact=impact,sans-serif;Symbol=symbol;Tahoma=tahoma,arial,helvetica,sans-serif;Terminal=terminal,monaco,monospace;Times New Roman=times new roman,times,serif;Trebuchet MS=trebuchet ms,geneva,sans-serif;Verdana=verdana,geneva,sans-serif;Webdings=webdings;Wingdings=wingdings,zapf dingbats",
+        theme_advanced_font_sizes : '8pt,9pt,10pt,11pt,12pt,14pt,16pt,18pt,20pt,22pt,24pt,28pt,36pt',
+        paste_retain_style_properties: 'font-size,font-family,color',
+        paste_remove_styles_if_webkit: false,
+
+        powerpaste_word_import: 'merge',
+        powerpaste_html_import: 'clean',
+        powerpaste_allow_local_images: false,
+
+        // Replace values for the template plugin
+        template_replace_values : {
+            username : "Some User",
+            staffid : "991234"
+        }
+    });
+</script>
+<!-- /TinyMCE -->
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
   <!-- Content Header (Page header) -->
