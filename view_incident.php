@@ -60,7 +60,7 @@ echo '<META http-equiv="refresh" content="0; URL=view_incident.php">';
 
 }
 // On récupère tout le contenu de la table jeux_video
-$reponse = $bdd->prepare('SELECT * FROM `incident` WHERE `id_user`= ?');
+$reponse = $bdd->prepare('SELECT * FROM `incident` WHERE `id_user`= ? ORDER BY id DESC');
 $reponse->execute(array($user));
 while ($donnees = $reponse->fetch())
 {

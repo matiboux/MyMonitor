@@ -105,3 +105,40 @@ while($row = $req->fetch()) {
 </div>
 <br />
 <?php } ?>
+
+<!-- incident -->
+
+<?php
+$sql = 'SELECT COUNT(*) FROM incident WHERE id_user = ? AND type = ? AND statut = ?';
+$req = $bdd->prepare($sql);
+$req->execute(array($id_user,'site','1')); 
+while($row = $req->fetchColumn()){
+$nbincident = $row;
+}
+
+if ($nbincident >= 1){
+
+    $sql = 'SELECT * FROM incident WHERE id_user = ? AND type = ? AND statut = ?' ;
+    $req = $bdd->prepare($sql);
+    $req->execute(array($id_user,'site','1'));
+    while($row = $req->fetch()) {
+ 
+       
+?>
+<div class="container">
+    
+<div class="section-messages">
+    
+
+</div> 
+
+
+<div class="section-status">
+
+
+<div class="alert alert-danger" role="alert"><b><u>Titre : <?php echo $row['titre']; ?> : <?php echo date("d-m-Y"); ?></u></b> <br /> Description : <?php echo $row['message']; ?></div>
+
+</div>
+</div>
+</div>
+<?php }} ?>
