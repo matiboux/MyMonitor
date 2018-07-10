@@ -6,7 +6,7 @@ if ($_GET['tokengenerated'] == 'true'){
   $sql = 'UPDATE admin SET token_site = ? WHERE id = ?';    
   $req = $bdd->prepare($sql);
   $req->execute(array(random(24),$_SESSION['login']));
-  echo '<META http-equiv="refresh" content="0; URL=view_sites_statut.php">';
+  echo '<META http-equiv="refresh" content="0; URL=myservers.php">';
   
 }
   $sql = 'SELECT token_site FROM admin WHERE id= ?' ;
@@ -28,7 +28,7 @@ if ($_GET['tokengenerated'] == 'true'){
     </h1>
     <ol class="breadcrumb">
    
-      <li>      <a href="view_sites_statut.php?tokengenerated=true"><button type="button" class="btn btn-info">Générer mon token publique</button></a>
+      <li>      <a href="myservers.php?tokengenerated=true"><button type="button" class="btn btn-info">Générer mon token publique</button></a>
       <a href="server/<?php echo $token; ?>"><button type="button" class="btn btn-success"><span class="glyphicon glyphicon-send" aria-hidden="true"></span>  Page publique</button></a>
 
 </li>
