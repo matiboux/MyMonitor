@@ -136,7 +136,7 @@ if ($nbincident >= 1){
 <div class="section-status">
 
 
-<div class="alert alert-danger" role="alert"><b><u>Titre : <?php echo $row['titre']; ?> : <?php echo date("d-m-Y"); ?></u></b> <br /> Description : <?php echo $row['message']; ?></div>
+<div class="alert alert-danger" role="alert"><b><u><h4><font color="white">Titre : <?php echo $row['titre']; ?></h4></font></u></b> <br /> Description : <?php echo $row['message']; ?></div>
 
 </div>
 </div>
