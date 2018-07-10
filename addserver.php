@@ -106,6 +106,7 @@ $user = $_SESSION['login'];
 
 
                  <?php } ?>  
+                    </select>
                  </div>
                 
 
