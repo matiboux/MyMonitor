@@ -15,7 +15,7 @@ require('includes/functions.inc.php');
     <link rel="stylesheet" href="../public/css/shards.min.css">
   </head>
   <body>
-   
+  <meta http-equiv="refresh" content="60">  
 
     <!-- Optional JavaScript -->
     <!-- JavaScript Dependencies: jQuery, Popper.js, Bootstrap JS, Shards JS -->
