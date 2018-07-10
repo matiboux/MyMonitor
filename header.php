@@ -148,7 +148,11 @@ require('includes/functions.inc.php');
                 <i class="glyphicon glyphicon-plus"></i> <span>Ajouter un site</span>
               </a>
             </li>
-
+            <li>
+              <a href="add_category.php">
+                <i class="glyphicon glyphicon-plus"></i> <span>Ajouter une catégorie</span>
+              </a>
+            </li>
 
 
       </aside>

@@ -69,17 +69,28 @@ if ($nbsiteerror >= 1){
 
 </div> 
 
+
+
+<?php
+
+$sql3 = 'SELECT * FROM category WHERE id_user= ?' ;
+$req3 = $bdd->prepare($sql3);
+$req3->execute(array($id_user));
+while($row3 = $req3->fetch()) {
+ 
+
+?>
 <div class="section-components">
     
 <ul class="list-group components">
     
 <li class="list-group-item group-name active">
     <i class="ion-ios-minus-outline group-toggle"></i> 
-    <strong>Services web</strong> 
+    <strong><?php echo $row3['name_category']; ?></strong> 
 <?php
-$sql = 'SELECT * FROM sites WHERE user= ?' ;
+$sql = 'SELECT * FROM sites WHERE user= ? AND category = ?' ;
 $req = $bdd->prepare($sql);
-$req->execute(array($id_user));
+$req->execute(array($id_user,$row3['id']));
 while($row = $req->fetch()) {
 ?>
 
@@ -92,3 +103,5 @@ while($row = $req->fetch()) {
 </nav>
 </li>
 </div>
+<br />
+<?php } ?>

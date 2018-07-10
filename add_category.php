@@ -37,19 +37,19 @@ $user = $_SESSION['login'];
 if ($_POST){
 
   $tab = array(
-    "user" => $user, 
-    "site" => $_POST['site'],
-    "mail_send" => '0',
-    "code_http" => '200',
-    "category" => $_POST['category']
+    "id_user" => $_SESSION['login'], 
+    "name_category" => $_POST['category']
 );
-$sql = 'INSERT INTO sites (user,site,mail_send,code_http,category) VALUES (:user, :site, :mail_send, :code_http, :category)' ;
+$sql = 'INSERT INTO category (id_user,name_category) VALUES (:id_user, :name_category)' ;
 $req = $bdd->prepare($sql);
 $result = $req->execute($tab);
+
+  
+
 echo '<div class="callout callout-success">
 <h4>F&eacute;licitations !</h4>
 
-<p>Le site vient d\' etre ajout&eacute; !</p>
+<p>La catégorie vient d\' etre ajout&eacute; !</p>
 </div>';
 }
 
@@ -62,27 +62,11 @@ echo '<div class="callout callout-success">
 
 
 
-    <form action="add_site.php" method="POST">
+    <form action="add_category.php" method="POST">
                     <!-- text input -->
                     <div class="form-group">
-                      <label>Site*</label>
-                      <input maxlength="200" class="form-control" name="site" placeholder="" type="text">
-                      <label>Categorie*</label>
-                      <select class="form-control" id="exampleFormControlSelect2" name="category">
-
-                      <?php
-                      $sql = 'SELECT * FROM category WHERE id_user= ?' ;
-                      $req = $bdd->prepare($sql);
-                      $req->execute(array($_SESSION['login']));
-                      while($row = $req->fetch()) {
-                        ?>
-                     
-                     <option value="<?php echo $row['id']; ?>"><?php echo $row['name_category']; ?></option>
-
-
-
-                   <?php } ?>   
-
+                      <label>Nom de la catégorie*</label>
+                      <input maxlength="200" class="form-control" name="category" placeholder="" type="text">
                       
     
     </select>
