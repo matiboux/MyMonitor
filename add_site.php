@@ -71,9 +71,9 @@ echo '<div class="callout callout-success">
                       <select class="form-control" id="exampleFormControlSelect2" name="category">
 
                       <?php
-                      $sql = 'SELECT * FROM category WHERE id_user= ?' ;
+                      $sql = 'SELECT * FROM category WHERE id_user= ? AND type = ?' ;
                       $req = $bdd->prepare($sql);
-                      $req->execute(array($_SESSION['login']));
+                      $req->execute(array($_SESSION['login'], 'site'));
                       while($row = $req->fetch()) {
                         ?>
                      

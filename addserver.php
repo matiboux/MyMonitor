@@ -52,9 +52,10 @@ $user = $_SESSION['login'];
             "mail_send" => "0",
             "apikey" => $apikey65,
             "phone" => $tel65,
-            "reponse_time" => '2'
+            "reponse_time" => '2',
+            "category" => $_POST['category']
           );
-    $sql = 'INSERT INTO servers (nom,IP,description,user,port,mail_send,apikey,phone,reponse_time) VALUES (:nom, :ip, :description, :user, :port, :mail_send, :apikey, :phone,:reponse_time)' ;
+    $sql = 'INSERT INTO servers (nom,IP,description,user,port,mail_send,apikey,phone,reponse_time,category) VALUES (:nom, :ip, :description, :user, :port, :mail_send, :apikey, :phone,:reponse_time, :category)' ;
     $req = $bdd->prepare($sql);
     $result = $req->execute($tab);
     echo '<div class="callout callout-success">
@@ -88,6 +89,26 @@ $user = $_SESSION['login'];
                       <label>Port*</label>
                       <input class="form-control" value="<?php if (isset($_POST['port'])) echo htmlentities(trim($_POST['port'])); ?>" name="port" placeholder=""  type="text">
                     </div>
+
+                    <label>Categorie*</label>
+                    <div class="form-group">
+                    <select class="form-control" id="exampleFormControlSelect2" name="category">
+
+                    <?php
+                    $sql = 'SELECT * FROM category WHERE id_user= ? AND type = ?' ;
+                    $req = $bdd->prepare($sql);
+                    $req->execute(array($_SESSION['login'],'server'));
+                    while($row = $req->fetch()) {
+                      ?>
+                   
+                   <option value="<?php echo $row['id']; ?>"><?php echo $row['name_category']; ?></option>
+
+
+
+                 <?php } ?>  
+                 </div>
+                
+
                     <!-- textarea -->
 
          <center>

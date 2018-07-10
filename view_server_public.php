@@ -49,11 +49,9 @@ while($row = $req->fetch()) {
 $id_user = $row['id'];
 }    
 
-
-
-$sql = 'SELECT count(*) FROM sites WHERE user= ? and code_http != ?';
+$sql = 'SELECT count(*) FROM servers WHERE user= ? and mail_send != ?';
 $req = $bdd->prepare($sql);
-$req->execute(array($id_user,'200')); 
+$req->execute(array($id_user,'0')); 
 while($row = $req->fetchColumn()){
 //echo $row;
 $nbsiteerror = $row;
@@ -75,7 +73,7 @@ if ($nbsiteerror >= 1){
 
 $sql3 = 'SELECT * FROM category WHERE id_user= ? AND type = ?' ;
 $req3 = $bdd->prepare($sql3);
-$req3->execute(array($id_user,'site'));
+$req3->execute(array($id_user,'server'));
 while($row3 = $req3->fetch()) {
  
 
@@ -88,14 +86,14 @@ while($row3 = $req3->fetch()) {
     <i class="ion-ios-minus-outline group-toggle"></i> 
     <strong><?php echo $row3['name_category']; ?></strong> 
 <?php
-$sql = 'SELECT * FROM sites WHERE user= ? AND category = ?' ;
+$sql = 'SELECT * FROM servers WHERE user= ? AND category = ?' ;
 $req = $bdd->prepare($sql);
 $req->execute(array($id_user,$row3['id']));
 while($row = $req->fetch()) {
 ?>
 
     
-    <div class="group-items "><li class="list-group-item sub-component"><a href="<?php echo $row['site']; ?>" target="_blank" class="links"><?php echo $row['site']; ?></a> <i data-toggle="tooltip" data-title="Site <?php echo $row['site']; ?>" data-container="body" class="ion ion-ios-help-outline help-icon" data-original-title="" title=""></i> <div class="pull-right"><small data-toggle="tooltip" title="" class="text-component-1 greens" data-original-title=""><?php if($row['code_http'] == '200'){ echo '<img src="../images/round-success.jpg" height="11px"> Operationnel'; } else { echo '<img src="../images/round-error.jpg" height="11px"> Indisponible : Erreur ' . $row['code_http']; } ?></small></div></li>
+    <div class="group-items "><li class="list-group-item sub-component"><?php echo $row['nom']; ?><i data-toggle="tooltip" data-title="" data-container="body" class="ion ion-ios-help-outline help-icon" data-original-title="" title=""></i> <div class="pull-right"><small data-toggle="tooltip" title="" class="text-component-1 greens" data-original-title=""><?php if($row['mail_send'] == '0'){ echo '<img src="../images/round-success.jpg" height="11px"> Operationnel'; } else { echo '<img src="../images/round-error.jpg" height="11px"> Indisponible : Erreur '; } ?></small></div></li>
 
 
 <?php } ?>

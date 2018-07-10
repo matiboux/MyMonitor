@@ -38,9 +38,10 @@ if ($_POST){
 
   $tab = array(
     "id_user" => $_SESSION['login'], 
-    "name_category" => $_POST['category']
+    "name_category" => $_POST['category'],
+    "type" => $_POST['type']
 );
-$sql = 'INSERT INTO category (id_user,name_category) VALUES (:id_user, :name_category)' ;
+$sql = 'INSERT INTO category (id_user,name_category,type) VALUES (:id_user, :name_category, :type)' ;
 $req = $bdd->prepare($sql);
 $result = $req->execute($tab);
 
@@ -67,7 +68,13 @@ echo '<div class="callout callout-success">
                     <div class="form-group">
                       <label>Nom de la catégorie*</label>
                       <input maxlength="200" class="form-control" name="category" placeholder="" type="text">
-                      
+                      <div class="form-group">
+    <label>Type</label>
+    <select multiple class="form-control" name="type">
+      <option value="site">Site</option>
+      <option value="server">Server</option>
+    </select>
+  </div>
     
     </select>
                     
