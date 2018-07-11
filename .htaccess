@@ -1,3 +1,4 @@
 RewriteEngine On
 RewriteRule ^share/(.+)$ view_site_public.php?token=$1&%{QUERY_STRING}
 RewriteRule ^server/(.+)$ view_server_public.php?token=$1&%{QUERY_STRING}
+RewriteRule ^incident/(.+)/(.+)$ view_incident_public.php?token=$1&id_incident=$2&%{QUERY_STRING}
