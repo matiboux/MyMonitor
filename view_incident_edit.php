@@ -95,9 +95,9 @@ $user = $_SESSION['login'];
 if ($_POST){
 
 
-  $sql = 'UPDATE incident SET titre = ?, message = ?, type = ? WHERE id = ? AND id_user = ?';    
+  $sql = 'UPDATE incident SET titre = ?, message = ?, type = ?, statut = ? WHERE id = ? AND id_user = ?';    
   $req = $bdd->prepare($sql);
-  $req->execute(array($_POST['titre'],$_POST['message'],$_POST['type'],$_GET['edit'],$_SESSION['login']));
+  $req->execute(array($_POST['titre'],$_POST['message'],$_POST['type'],'1',$_GET['edit'],$_SESSION['login']));
 
 
 echo '<div class="callout callout-success">
