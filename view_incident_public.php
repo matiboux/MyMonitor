@@ -64,3 +64,9 @@ $id_user = $row['id'];
 </div>
 </div>
 <?php } ?>
+
+<?php if ($copy == true){
+echo '<div class="footer-copyright text-center py-3">© 2018 Copyright:
+      <a href="https://github.com/matiboux/MyMonitor"> Sponsorisé par MyMonitor</a>
+    </div>'
+} ?>

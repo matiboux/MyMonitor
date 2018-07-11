@@ -73,7 +73,9 @@ require('includes/functions.inc.php');
 											<br />
 											<a href="profil.php" style="color:white;">Mon profil</a>
                     </p>
+                    
                   </li>
+                 
                   <!-- Menu Body -->
 
                   <!-- Menu Footer-->
@@ -164,5 +166,13 @@ require('includes/functions.inc.php');
               </a>
             </li>
 
+            <?php if ($copy == true){
 
+
+            echo '<li style="position: fixed; bottom: 0; ">
+              <a href="https://github.com/matiboux/MyMonitor">
+                <i class="glyphicon glyphicon-plus"></i> <span><b>Sponsorisé par MyMonitor</b></span>
+              </a>
+            </li>';
+          } ?>
       </aside>
