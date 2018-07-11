@@ -40,6 +40,15 @@ include 'db_connect.php';
                     </tr>
 
 <?php
+$sql = 'SELECT * FROM admin WHERE id= ?' ;
+$req = $bdd->prepare($sql);
+$req->execute(array($_SESSION['login']));
+while($row = $req->fetch()) {
+$id_user = $row['id'];
+$token = $row['token_site'];
+}    
+
+
 
 if (!empty($_GET['delete'])){
   $sql = 'DELETE FROM incident WHERE id = ? AND id_user = ?';    
@@ -71,6 +80,7 @@ while ($donnees = $reponse->fetch())
                     <td><?php echo $donnees['type']; ?></td>
                     <td><?php if($donnees['statut'] == '1'){ echo '<span class="label label-success">Ouvert</span>'; } else{ echo '<span class="label label-danger">Fermé</span>'; }?>
                       <td>
+                      <a href="incident/<?php echo $token; ?>/<?php echo $donnees['id']; ?>"><span class="label label-info"><span class="glyphicon glyphicon-paperclip" aria-hidden="true"></span></span></a>
                       <a href="view_incident_edit.php?edit=<?php echo $donnees['id']; ?>"><span class="label label-warning"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></span></a>
                       <a href="view_incident.php?resolved=<?php echo $donnees['id']; ?>"><span class="label label-success"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></span></a>
 
