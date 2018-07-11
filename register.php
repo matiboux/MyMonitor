@@ -134,6 +134,12 @@ include 'db_connect.php';
 
 
         <a href="login.php" class="text-center">J'ai déja un compte</a>
+
+        <?php if ($copy == true){
+echo '<div class="footer-copyright text-center py-3">© 2018 Copyright:
+      <a href="https://github.com/matiboux/MyMonitor"> Sponsorisé par MyMonitor</a>
+    </div>';
+} ?>
       </div><!-- /.form-box -->
     </div><!-- /.register-box -->
 
