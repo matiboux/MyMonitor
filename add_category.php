@@ -34,7 +34,7 @@ $user = $_SESSION['login'];
 
 <?php
 
-if ($_POST){
+if (!empty($_POST['category'])){
 
   $tab = array(
     "id_user" => $_SESSION['login'], 
