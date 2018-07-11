@@ -1,5 +1,5 @@
 <?php
-include('includes/Class.SMTP.php');
+
 include('config.php');
 
 $error = false;
