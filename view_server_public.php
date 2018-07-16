@@ -90,10 +90,18 @@ $sql = 'SELECT * FROM servers WHERE user= ? AND category = ?' ;
 $req = $bdd->prepare($sql);
 $req->execute(array($id_user,$row3['id']));
 while($row = $req->fetch()) {
+if ($row['reponse_time'] < 1){
+
+    $reponsetime = "<1";
+}else{
+
+    $reponsetime = $row['reponse_time'];
+}
+
 ?>
 
     
-    <div class="group-items "><li class="list-group-item sub-component"><?php echo $row['nom']; ?><i data-toggle="tooltip" data-title="" data-container="body" class="ion ion-ios-help-outline help-icon" data-original-title="" title=""></i> <div class="pull-right"><small data-toggle="tooltip" title="" class="text-component-1 greens" data-original-title=""><?php if($row['mail_send'] == '0'){ echo '<img src="../images/round-success.jpg" height="11px"> Operationnel (' . $row['reponse_time'] . ' ms)'; } else { echo '<img src="../images/round-error.jpg" height="11px"> Indisponible : Erreur '; } ?></small></div></li>
+    <div class="group-items "><li class="list-group-item sub-component"><?php echo $row['nom']; ?><i data-toggle="tooltip" data-title="" data-container="body" class="ion ion-ios-help-outline help-icon" data-original-title="" title=""></i> <div class="pull-right"><small data-toggle="tooltip" title="" class="text-component-1 greens" data-original-title=""><?php if($row['mail_send'] == '0'){ echo '<img src="../images/round-success.jpg" height="11px"> Operationnel (' . $reponsetime . ' ms)'; } else { echo '<img src="../images/round-error.jpg" height="11px"> Indisponible : Erreur '; } ?></small></div></li>
 
 
 <?php } ?>
@@ -139,9 +147,17 @@ if ($nbincident >= 1){
 <div class="section-status">
 
 
-<div class="alert alert-danger" role="alert"><b><u><h4><font color="white">Titre : <?php echo $row['titre']; ?> </font></h4></u></b> <br /> Description : <?php echo $row['message']; ?></div>
+<div class="alert alert-danger" role="alert"><b><h6><font color="white">Incident n°<?php echo $row['id']; ?> : <?php echo $row['titre']; ?> <div style="float: right;"><a href="../incident/<?php echo $_GET['token']; ?>/<?php echo $row['id']; ?>" style="color: white">[+]</a></div></font></h6></b> <br /> <hr> <?php echo $row['message']; ?></div>
 
 </div>
 </div>
 </div>
+ 
 <?php }} ?>
+
+
+<?php if ($copy == true){
+    echo '<div class="footer-copyright text-center py-3">© 2018 Copyright:
+          <a href="https://github.com/matiboux/MyMonitor"> Sponsorisé par MyMonitor</a>
+        </div>';
+    } ?>

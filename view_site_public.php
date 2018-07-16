@@ -136,9 +136,15 @@ if ($nbincident >= 1){
 <div class="section-status">
 
 
-<div class="alert alert-danger" role="alert"><b><u><h4><font color="white">Titre : <?php echo $row['titre']; ?></h4></font></u></b> <br /> Description : <?php echo $row['message']; ?></div>
+<div class="alert alert-danger" role="alert"><b><h6><font color="white">Incident n°<?php echo $row['id']; ?> : <?php echo $row['titre']; ?> <div style="float: right;"><a href="../incident/<?php echo $_GET['token']; ?>/<?php echo $row['id']; ?>" style="color: white">[+]</a></div></font></h6></b> <br /> <hr> <?php echo $row['message']; ?></div>
 
 </div>
 </div>
 </div>
 <?php }} ?>
+
+<?php if ($copy == true){
+    echo '<div class="footer-copyright text-center py-3">© 2018 Copyright:
+          <a href="https://github.com/matiboux/MyMonitor"> Sponsorisé par MyMonitor</a>
+        </div>';
+    } ?>

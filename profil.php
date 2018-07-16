@@ -20,7 +20,6 @@ include 'db_connect.php';
   <!-- Main content -->
  <div class="container-fluid">
 
-<?php include 'http://mymonitor.hexicans.eu/labs/maj/2.1.php'; ?>
 
 <!-- /.box-header -->
 <?php
@@ -29,12 +28,12 @@ if (!empty($_POST['password']) || !empty($_POST['apikey']) || !empty($_POST['pho
 
 if (!empty($_POST['password'])){
             $pwd = password_hash($_POST['password'], PASSWORD_DEFAULT);
-            $sql = 'UPDATE admin SET pass_md5 = ? WHERE mail = ?';
+            $sql = 'UPDATE admin SET pass_md5 = ? WHERE id = ?';
             $req = $bdd->prepare($sql);
             $req->execute(array($pwd,$_SESSION['login']));
 }
 if (!empty($_POST['apikey'])){
-            $sql = 'UPDATE admin SET apikey = ? WHERE mail = ?';
+            $sql = 'UPDATE admin SET apikey = ? WHERE id = ?';
             $req = $bdd->prepare($sql);
             $req->execute(array($_POST['apikey'],$_SESSION['login']));
             $sql = 'UPDATE servers SET apikey = ? WHERE user = ?';
@@ -43,7 +42,7 @@ if (!empty($_POST['apikey'])){
 
 }
 if (!empty($_POST['phone'])){
-            $sql = 'UPDATE admin SET phone = ? WHERE mail = ?';
+            $sql = 'UPDATE admin SET phone = ? WHERE id = ?';
             $req = $bdd->prepare($sql);
             $req->execute(array($_POST['phone'],$_SESSION['login']));
             $sql = 'UPDATE servers SET phone = ? WHERE user = ?';

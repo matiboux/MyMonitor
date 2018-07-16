@@ -73,7 +73,7 @@ $user = $_SESSION['login'];
 
 <?php
 
-if ($_POST){
+if (!empty($_POST['message'])){
 
 
   $tab = array(
