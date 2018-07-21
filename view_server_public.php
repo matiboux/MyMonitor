@@ -58,7 +58,7 @@ $nbsiteerror = $row;
 }
 if ($nbsiteerror >= 1){
 
-    echo '<div class="alert alert-warning"> Vos services rencontrent des problèmes</div>';
+    echo '<div class="alert alert-warning"> Certains services rencontrent un problème</div>';
 }else{
 
     echo '<div class="alert alert-success"> Tous les systèmes sont opérationnels</div>';
