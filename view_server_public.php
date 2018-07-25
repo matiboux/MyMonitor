@@ -58,9 +58,9 @@ while($row = $req->fetchColumn()){
 //echo $row;
 $nbsiteerror = $row;
 }
-$sql = 'SELECT count(*) FROM incident WHERE statut = ? AND type = ?';
+$sql = 'SELECT count(*) FROM incident WHERE statut = ? AND type = ? AND id_user = ?';
 $req = $bdd->prepare($sql);
-$req->execute(array('1','server')); 
+$req->execute(array('1','server',$id_user)); 
 while($row = $req->fetchColumn()){
 //echo $row;
 $nbincidentstatus = $row;
