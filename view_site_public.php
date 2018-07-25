@@ -23,6 +23,10 @@ require('includes/functions.inc.php');
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script src="../public/js/shards.min.js"></script>
+    <link rel="stylesheet" href="../includes/panel_css.css">
+  
+
+  
   </body>
 </html>
 
@@ -133,20 +137,16 @@ if ($nbincident >= 1){
        
 ?>
 <div class="container">
-    
-<div class="section-messages">
-    
-
-</div> 
 
 
-<div class="section-status">
-
-
-<div class="alert alert-danger" role="alert"><b><h6><font color="white">Incident n°<?php echo $row['id']; ?> : <?php echo $row['titre']; ?> <div style="float: right;"><a href="../incident/<?php echo $_GET['token']; ?>/<?php echo $row['id']; ?>" style="color: white">[+]</a></div></font></h6></b> <br /> <hr> <?php echo $row['message']; ?></div>
-
-</div>
-</div>
+<section class="panel panel-warning">
+  <header class="panel-heading">
+   <h5 class="panel-title">Incident n°<?php echo $row['id']; ?> :  <?php echo $row['titre']; ?>  <div style="float: right;"><a href="../incident/<?php echo $_GET['token']; ?>/<?php echo $row['id']; ?>" style="color: white">[+]</a></div></h5>
+  </header>
+  <div class="panel-body">
+   <p><?php echo $row['message']; ?></p>
+  </div>
+</section>
 </div>
 <?php }} ?>
 
