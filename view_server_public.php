@@ -56,7 +56,15 @@ while($row = $req->fetchColumn()){
 //echo $row;
 $nbsiteerror = $row;
 }
-if ($nbsiteerror >= 1){
+$sql = 'SELECT count(*) FROM incident WHERE statut = ?';
+$req = $bdd->prepare($sql);
+$req->execute(array('1')); 
+while($row = $req->fetchColumn()){
+//echo $row;
+$nbincidentstatus = $row;
+}
+if ($nbsiteerror >= 1 || $nbincidentstatus >= 1){
+
 
     echo '<div class="alert alert-warning"> Certains services rencontrent un problème</div>';
 }else{
