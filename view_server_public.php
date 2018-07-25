@@ -151,7 +151,7 @@ if ($nbincident >= 1){
 
 <section class="panel panel-warning">
   <header class="panel-heading">
-   <h5 class="panel-title">Incident n°<?php echo $row['id']; ?> :  <?php echo $row['titre']; ?></h5>
+   <h5 class="panel-title">Incident n°<?php echo $row['id']; ?> :  <?php echo $row['titre']; ?>  <div style="float: right;"><a href="../incident/<?php echo $_GET['token']; ?>/<?php echo $row['id']; ?>" style="color: white">[+]</a></div></h5>
   </header>
   <div class="panel-body">
    <p><?php echo $row['message']; ?></p>
