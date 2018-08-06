@@ -91,9 +91,7 @@ $id_user = $row['id'];
 <?php } ?>
 
 
-<div class="footer-copyright text-center py-3">
-      <a href="../../">Retour à l'accueil</a>
-    </div>
+
 
 
 <?php if ($copy == true){
