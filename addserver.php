@@ -75,11 +75,11 @@ $user = $_SESSION['login'];
                     <!-- text input -->
                     <div class="form-group">
                       <label>Nom*</label>
-                      <input maxlength="10" class="form-control" value="<?php if (isset($_POST['nom'])) echo htmlentities(trim($_POST['titre'])); ?>" name="nom" placeholder="" type="text">
+                      <input class="form-control" value="<?php if (isset($_POST['nom'])) echo htmlentities(trim($_POST['titre'])); ?>" name="nom" placeholder="" type="text">
                     </div>
                     <div class="form-group">
                       <label>Description*</label>
-                      <input maxlength="35" class="form-control" value="<?php if (isset($_POST['description'])) echo htmlentities(trim($_POST['description'])); ?>" name="description" placeholder="" type="text">
+                      <input class="form-control" value="<?php if (isset($_POST['description'])) echo htmlentities(trim($_POST['description'])); ?>" name="description" placeholder="" type="text">
                     </div>
                     <div class="form-group">
                       <label>IP*</label>
