@@ -104,7 +104,7 @@ if ($donnees['mail_send'] == '1')
 <br />
 
 
-Ping : <span class="label label-danger">Failed</span>';
+Ping : <span class="label label-danger">Failed</span><br />';
 }
 else
 {
