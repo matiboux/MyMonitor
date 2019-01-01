@@ -3,6 +3,11 @@
 **MyMonitor** is an *open source PHP service* for monitoring the status of external services or websites for you.  
 MyMonitor includes a panel to manage and view tracked services and their current status. Turn on or off notifications for when a service goes down.
 
+Don't forget to add the cron to your crontab :
+
+```
+*/1 * * * * php [directory]/crontab.php
+
 ---
 
 ## License
