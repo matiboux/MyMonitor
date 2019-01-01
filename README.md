@@ -7,6 +7,7 @@ Don't forget to add the cron to your crontab :
 
 ```
 */1 * * * * php [directory]/crontab.php
+```
 
 ---
 
